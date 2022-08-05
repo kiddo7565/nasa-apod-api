@@ -1,7 +1,7 @@
 let date
 let randomDate
 
-// when user clicks button, get weather of today or specified date
+// when user clicks button, get current weather or specific date
 document.querySelector('button').addEventListener('click', function () {
     date = document.querySelector('input').value
     logDate(date)
@@ -31,7 +31,7 @@ function getRandomDate(date1, date2){
     } return formattedDate
 }
 
-// get today's date
+// get current date
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -39,7 +39,7 @@ var yyyy = today.getFullYear();
 
 today = `${yyyy}-${mm}-${dd}`;
 
-// when user clicks on Get random, get random weather
+// when user clicks on get random, get random weather
 document.querySelector('.random').addEventListener('click', function () {
     randomDate = getRandomDate('1995-06-16', today)
     logDate(randomDate)
@@ -50,7 +50,7 @@ document.querySelector('.random').addEventListener('click', function () {
 })
 
 function logDate(date) {
-    let url = `https: //api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0`
+    let url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=2&api_key=xAPor7DNYbVQK4fadcZk0JBx0W9jQAajvw4EWmSy`
     
     fetch(url)
     .then(res => res.json()) // parse response as JSON
