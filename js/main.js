@@ -49,13 +49,15 @@ document.querySelector('.random').addEventListener('click', function () {
     document.querySelector('input').value = ''
 })
 
-function logDate(date) {
-    let url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=2&api_key=xAPor7DNYbVQK4fadcZk0JBx0W9jQAajvw4EWmSy`
+//function logDate(date) {
+    function getFetch(){
+    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${choice}api_key=A90GM2yx67KxZvQYaAx4IAF9xv4nNjwoVzLmTTAL`
     
     fetch(url)
     .then(res => res.json()) // parse response as JSON
     .then(data => {
-
+        console.log(data)
+        document.querySelector('img').src = data.photos[0].img_src
     // when user selects date, hide random date
     document.querySelector('button').addEventListener('click', function () {
         document.querySelector('.randomInfo').innerText = ''
@@ -79,3 +81,21 @@ function logDate(date) {
         console.log(`error ${err}`)
     });
 }
+
+// document.querySelector('button').addEventListener('click', getFetch)
+
+// function getFetch(){
+//   const choice = document.querySelector('input').value
+//   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${choice}api_key=A90GM2yx67KxZvQYaAx4IAF9xv4nNjwoVzLmTTAL`
+
+//   fetch(url)
+//       .then(res => res.json()) // parse response as JSON
+//       .then(data => {
+//         console.log(data)
+//         document.querySelector('img').src = data.hdurl
+//         //document.querySelector('h3').innerText = data.explanation
+//       })
+//       .catch(err => {
+//           console.log(`error ${err}`)
+//       });
+// }
