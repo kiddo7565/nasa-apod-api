@@ -1,7 +1,7 @@
 let date
 let randomDate
 
-// when user clicks button, get current weather or specific date
+// when user clicks button, get APOD of today or specified date
 document.querySelector('button').addEventListener('click', function () {
     date = document.querySelector('input').value
     logDate(date)
@@ -31,7 +31,7 @@ function getRandomDate(date1, date2){
     } return formattedDate
 }
 
-// get current date
+// get today's date
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -39,7 +39,7 @@ var yyyy = today.getFullYear();
 
 today = `${yyyy}-${mm}-${dd}`;
 
-// when user clicks on get random, get random weather
+// when user clicks on Get random, get random APOD
 document.querySelector('.random').addEventListener('click', function () {
     randomDate = getRandomDate('1995-06-16', today)
     logDate(randomDate)
@@ -49,15 +49,13 @@ document.querySelector('.random').addEventListener('click', function () {
     document.querySelector('input').value = ''
 })
 
-//function logDate(date) {
-    function getFetch(){
-    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${choice}api_key=A90GM2yx67KxZvQYaAx4IAF9xv4nNjwoVzLmTTAL`
+function logDate(date) {
+    let url = `https://api.nasa.gov/planetary/apod?api_key=nOz75UUiKIi2eHT2FUUKZjg9P8qgiBGrgDtA64cP&date=${date}`
     
     fetch(url)
     .then(res => res.json()) // parse response as JSON
     .then(data => {
-        console.log(data)
-        document.querySelector('img').src = data.photos[0].img_src
+
     // when user selects date, hide random date
     document.querySelector('button').addEventListener('click', function () {
         document.querySelector('.randomInfo').innerText = ''
@@ -81,21 +79,3 @@ document.querySelector('.random').addEventListener('click', function () {
         console.log(`error ${err}`)
     });
 }
-
-// document.querySelector('button').addEventListener('click', getFetch)
-
-// function getFetch(){
-//   const choice = document.querySelector('input').value
-//   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${choice}api_key=A90GM2yx67KxZvQYaAx4IAF9xv4nNjwoVzLmTTAL`
-
-//   fetch(url)
-//       .then(res => res.json()) // parse response as JSON
-//       .then(data => {
-//         console.log(data)
-//         document.querySelector('img').src = data.hdurl
-//         //document.querySelector('h3').innerText = data.explanation
-//       })
-//       .catch(err => {
-//           console.log(`error ${err}`)
-//       });
-// }
